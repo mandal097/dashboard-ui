@@ -5,9 +5,9 @@ import UserBadge from "./UserBadge";
 
 const Title = () => {
   return (
-    <div className="bg-[var(--dark2)] h-auto w-full p-4 rounded-xl grid grid-cols-2">
+    <div className="bg-[var(--dark2)] h-auto w-full p-4 rounded-xl flex flex-col lg:grid  lg:grid-cols-2 gap-4">
       {/* left part */}
-      <div className="flex items-start gap-3 h-fit">
+      <div className=" flex items-start gap-3 h-fit">
         <div className="flex items-start h-auto pt-1">
           <Icon img="back-arrow.png" w="w-4" h="h-4" />
         </div>
@@ -20,8 +20,8 @@ const Title = () => {
       </div>
 
       {/* right part */}
-      <div className="flex h-fit justify-end items-center gap-3 ">
-        <div className="flex flex-col justify-end items-end">
+      <div className="flex flex-row-reverse lg:flex-row h-fit justify-end items-center gap-3 ">
+        <div className="flex flex-col justify-end lg:items-end">
           <h2 className="text-white text-sm">Centered Martial Arts</h2>
           <p className="text-[var(--gray1)] text-xs">Sunnyvale, Ca</p>
         </div>
@@ -33,15 +33,15 @@ const Title = () => {
           />
         </div>
         {/* vert */}
-        <div className="flex items-start h-fit ml-1">
+        <div className="hidden lg:flex items-start h-fit ml-1">
           <Icon img="icVert.png" w="w-5" h="h-5" />
         </div>
       </div>
 
       {/* bottom */}
-      <div className="col-span-4 flex items-center gap-4 w-full mt-3">
+      <div className="flex flex-col lg:flex-row col-span-4  items-center gap-4 w-full mt-3">
         {/* user badges */}
-        <div className="flex items-center pl-7">
+        <div className="flex items-center mr-auto ml-7 lg:pl-7">
           <UserBadge border="border-[var(--dark)]" />
           <UserBadge border="border-[var(--dark)]" />
           <UserBadge border="border-[var(--dark)]" />
@@ -52,7 +52,7 @@ const Title = () => {
           </div>
         </div>
         {/* buttons */}
-        <div className="flex  p-4 gap-4">
+        <div className="flex flex-wrap p-4 gap-4">
           <button className="btn bg-[var(--primary)] border-none- hover:bg-transparent border-[1px] border-[var(--primary)]">
             <img src="/assets/add-friend.png" alt="icon" className="h-4 w-4" />
             <span className="text-white text-xs">Invite People</span>
@@ -70,9 +70,9 @@ const Title = () => {
         </div>
 
         {/* progress bar */}
-        <div className="flex items-center gap-5 ml-auto">
+        <div className="flex flex-col w-full lg:w-fit lg:flex-row lg:items-center gap-5 lg:ml-auto">
           <span className="text-white text-sm">Total Progress 60%</span>
-          <div className="relative h-3 w-48 bg-[var(--dark4)] overflow-hidden rounded-md">
+          <div className="relative h-3 w-full lg:w-48 bg-[var(--dark4)] overflow-hidden rounded-md">
             <div className="absolute top-0 left-0 h-full w-[60%] bg-[var(--primary)]"></div>
           </div>
         </div>

@@ -1,21 +1,49 @@
+"use client";
 import React from "react";
 import { AiOutlineMenu, AiOutlineRight, AiOutlineDown } from "react-icons/ai";
 
 import Icon from "./Icon";
 
-const SidebarItem = ({ img }: { img: string }) => {
-  return (
-    <div className="flex items-center gap-2 h-8 w-60 bg-red-300">
-      <Icon img={img} w="w-5" h="h-5" />
-    </div>
-  );
-};
+const Sidebar = ({
+  sideShow,
+  setSideShow,
+}: {
+  sideShow: boolean;
+  setSideShow: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  // const [sideShow, setSideShow] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement | null>(null);
 
-const Sidebar = () => {
+  React.useEffect(() => {
+    const match = window.matchMedia("(max-width: 1024px)").matches;
+    if (!match) {
+      setSideShow(true);
+    }
+  }, [setSideShow]);
+
+  React.useEffect(() => {
+    const match = window.matchMedia("(max-width: 1024px)").matches;
+    const checkClick = (e: MouseEvent) => {
+      if (match && ref.current && !ref.current.contains(e.target as Node)) {
+        setSideShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkClick);
+    return () => {
+      document.removeEventListener("mousedown", checkClick);
+    };
+  }, [setSideShow]);
   return (
-    <div className="w-60 h-screen sticky bg-[var(--dark2)] top-0 left-0 px-8 overflow-hidden overflow-y-scroll shadow-xl shadow-[var(--dark1)]">
+    <div
+      ref={ref}
+      className={`${
+        sideShow ? "translate-x-0" : "-translate-x-60"
+      } lg:translate-x-0 w-60 h-screen fixed lg:sticky bg-[var(--dark2)] top-0 left-0 px-8 overflow-hidden overflow-y-scroll shadow-xl shadow-[var(--dark1)] z-50 transition-all duration-200`}>
       {/* logo */}
-      <div className="flex h-20 w-60 items-center bg-[var(--dark2)] justify-center- text-white gap-6 cursor-pointer sticky top-0">
+      <div
+        onClick={() => setSideShow(!sideShow)}
+        className="flex h-20 w-60 items-center bg-[var(--dark2)] justify-center- text-white gap-6 cursor-pointer sticky top-0">
         <p className="text-lg">weframeteh</p>
         <div className="text-[var(--iris-col)] text-lg">
           <AiOutlineMenu />
@@ -52,10 +80,10 @@ const Sidebar = () => {
           <p className="text-[var(--iris-col)] text-xs ml-auto">
             <AiOutlineRight />
           </p>
-          <div className="absolute h-10 w-1 rounded-full bg-[#6418C3] top-0 -right-8"></div>
+          <div className="absolute h-10 w-1 rounded-full bg-[#6418C3] top-0 -right-8" />
         </div>
 
-        <div className="flex items-center gap-2 h-10 w-full cursor-pointer">
+        <div className="flex items-center gap-2 h-10 w-full cursor-pointer relative">
           <Icon img="contact.png" w="w-5" h="h-5" />
           <span className="text-xs text-[var(--iris-col)]">Contact</span>
           <div className="flex items-center justify-center bg-[var(--accent02)] w-fit h-5 p-2 rounded-full ml-auto">
@@ -98,7 +126,9 @@ const Sidebar = () => {
         <div className="w-full h-36 bg-gradient-to-bl from-[#076ECD] to-[#1CBBFF] my-12 mb-16 rounded-2xl relative overflow-hidden p-4 z-50">
           <div className="absolute w-24 h-24 rounded-tl-[40px] rounded-bl-[30px] -bottom-8 -right-7  bg-gradient-to-bl from-[#A0F9FF] to-[#A0F9FF] z-0" />
           <Icon img="dots.png" w="w-6" h="h-7" />
-          <p className="text-white text-sm font-semibold my-2">Increase your work <br /> with Kanban  </p>
+          <p className="text-white text-sm font-semibold my-2">
+            Increase your work <br /> with Kanban{" "}
+          </p>
           <Icon img="right-arrow.png" w="w-5" h="h-2" />
         </div>
       </div>

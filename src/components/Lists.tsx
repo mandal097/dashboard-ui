@@ -25,7 +25,7 @@ const Lists = () => {
   return (
     <div className="w-full p-4 rounded-xl grid md:grid-cols-2 lg:grid-cols-3 mt-6 gap-4">
       {/* todo list */}
-      <div className="h-auto flex flex-col gap-4 mt-6">
+      <div className="order-2 lg:order-1 h-auto flex flex-col gap-4 mt-6">
         <ListHead
           head="To-Do List(24)"
           bgCol="bg-[var(--primary)]"
@@ -59,7 +59,7 @@ const Lists = () => {
       </div>
 
       {/* In Progress */}
-      <div className="h-auto flex flex-col gap-4 mt-6">
+      <div className="order-3 lg:order-1 h-auto flex flex-col gap-4 mt-6">
         <ListHead
           head="In Progress (2)"
           bgCol="bg-[#211A75]"
@@ -84,7 +84,7 @@ const Lists = () => {
       </div>
 
       {/* Done  */}
-      <div className="h-auto flex flex-col gap-4 mt-6">
+      <div className=" order-4 lg:order-1 h-auto flex flex-col gap-4 mt-6">
         <ListHead
           head="Done (3)"
           bgCol="bg-[#211A75]"
@@ -117,14 +117,16 @@ const Lists = () => {
       </div>
 
       {/* Revised */}
-      <div className="h-auto flex flex-col gap-4 mt-6">
+      <div className="order-1 lg:order-1 h-auto flex flex-col gap-4 mt-6">
         <ListHead
           head="Revised (0)"
           bgCol="bg-[#211A75]"
           textCol="text-[var(--primary)]"
         />
         <div className="bg-[#211A75] h-28 w-full rounded-xl p-6">
-            <div className="bg-[var(--dark2)] flex items-center justify-center rounded-2xl border-dashed border-2 border-[var(--iris-col)] w-full h-full text-[var(--iris-col)]">Move card here</div>
+          <div className="bg-[var(--dark2)] flex items-center justify-center rounded-2xl border-dashed border-2 border-[var(--iris-col)] w-full h-full text-[var(--iris-col)]">
+            Move card here
+          </div>
         </div>
       </div>
     </div>
